@@ -11,7 +11,7 @@
         public BasicStack() => _items = new double[10];
 
         //stack items counter
-        public int Counter => _index + 1;
+        public int Count => _index + 1;
 
         //methods in stack
         public void Push(double value) => _items[++_index] = value;
