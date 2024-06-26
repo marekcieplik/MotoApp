@@ -1,6 +1,6 @@
 ﻿namespace MotoApp
 {
-    internal class BasicStack
+    public class BasicStack
     {
         //table of etams in stock
         private readonly double[] _items;
