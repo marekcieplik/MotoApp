@@ -1,8 +1,9 @@
 ﻿namespace MotoApp.Entites
 {
-    public class Employee
+    public class Employee : EntityBase
     {
-        public int Id { get; set; }
+        // removed to base class
+        // public int Id { get; set; }
 
         public string? FirstName { get; set; }
 
