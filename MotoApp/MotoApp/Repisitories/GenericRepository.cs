@@ -4,12 +4,17 @@ namespace MotoApp.Repisitories
 {
     public class GenericRepository<T> where T : IEntity
     {
-        private readonly List<T> _items = new ();
+        protected readonly List<T> _items = new ();
 
         public void Add(T item)
         {
-            //employee.Id = _employees.Count + 1;
+            item.Id = _items.Count + 1;
             _items.Add(item);
+        }
+
+        public T GetById(int id)
+        {
+            return _items.Single(item => item.Id == id);
         }
 
         public void Save()
@@ -19,9 +24,6 @@ namespace MotoApp.Repisitories
                 Console.WriteLine(item);
             }
         }
-        public Employee GetById(int id)
-        {
-            return _items.Single(item => item.Id == id);
-        }
+
     }
 }
