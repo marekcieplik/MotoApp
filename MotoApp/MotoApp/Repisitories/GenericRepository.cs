@@ -2,28 +2,32 @@
 
 namespace MotoApp.Repisitories
 {
-    public class GenericRepository<TEntity, TKey> 
-        where TEntity : class, IEntity, new()  //new() means that class should have NoArgs Constructor
-        where TKey : struct  //struct means that could by types which are struct, e.g. int
+    public class GenericRepository<T> 
+        where T : class, IEntity, new()
     {
-        public TEntity CreateNewItem()
+        public T CreateNewItem()
         {
-            return new TEntity();  //this is possible becouse TEntity has new()
+            return new T();  //this is possible becouse T has new()
         }
-        public TKey? Key { get; set; }
-        protected readonly List<TEntity> _items = new ();
 
-        public void Add(TEntity item)
+        protected readonly List<T> _items = new ();
+
+        public void Add(T item)
         {
             item.Id = _items.Count + 1;
             _items.Add(item);
         }
 
-        public TEntity GetById(int id)
+        public void Remove(T item)
+        {
+            _items.Remove(item);
+        }
+
+        public T GetById(int id)
         {
             if (id > _items.Count)
                 {
-                return default(TEntity); //return null is possible when : where TEntity : class
+                return default(T); //return null is possible when : where T : class
 
                 }
             else
