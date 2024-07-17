@@ -30,3 +30,15 @@ static void WriteAllToConsole(IReadRepository<IEntity> repository)
         Console.WriteLine(item);
     }
 }
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// Test: 
+
+GetEmployeeByIdTest(employeeRepository);
+//why didn't IRepository(IEntity) not work
+//static void GetEmployeeByIdTest(IRepository<IEntity> employeeRepository)  
+static void GetEmployeeByIdTest(IRepository<Employee> employeeRepository)
+{
+    var employee = employeeRepository.GetById(1);
+    Console.WriteLine(employee);
+}
