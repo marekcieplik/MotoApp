@@ -2,15 +2,17 @@
 
 using MotoApp.Entites;
 
-public interface IRepository<T> where T : class, IEntity
-{
-    IEnumerable<T> GetAll();
+public interface IRepository<T> : IReadRepository<T>, IWriteRepository<T>
+    where T : class, IEntity
+{ 
 
-    T GetById(int id);
-
-    void Add(T item);
-
-    void Remove(T item);
-
-    void Save();
 }
+    //   IEnumerable<T> GetAll();
+    //
+    //    T GetById(int id);
+    //
+    //    void Add(T item); //kontrawariancja
+    //
+    //    void Remove(T item);  //kontrawariancja
+    //
+    //    void Save();  //kontrawariancja
