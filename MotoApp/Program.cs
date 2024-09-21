@@ -1,2 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using MotoApp.Entities;
+using MotoApp.Repositories;
+
+var employeesRepository = new ListGenericRepository<Employee>();
+employeesRepository.Add(new Employee() { FirstName = "Adam"});
+employeesRepository.Save();
+
