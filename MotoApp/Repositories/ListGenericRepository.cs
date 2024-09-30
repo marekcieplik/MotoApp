@@ -2,26 +2,31 @@
 
 namespace MotoApp.Repositories;
 
-public class ListGenericRepository<T> where T : IEntity
+public class ListGenericRepository<T> where T : class, IEntity, new()
 {
-    protected readonly List<T> _entities = new List<T>();
-
-    public void Add(T entity)
-    {
-        entity.Id = _entities.Count + 1;
-        _entities.Add(entity);
-    }
+    protected readonly List<T> _items = new List<T>();
 
     public T GetById(int id)
     {
-        return _entities.Single(entity => entity.Id == id);
+        return _items.Single(item => item.Id == id);
+    }
+
+    public void Add(T item)
+    {
+        item.Id = _items.Count + 1;
+        _items.Add(item);
+    }
+
+    public void Remove(T item)
+    {
+        _items.Remove(item);
     }
 
     public void Save()
     {
-        foreach (var entity in _entities)
+        foreach (var item in _items)
         {
-            Console.WriteLine(entity.ToString());
+            Console.WriteLine(item.ToString());
         }
     }
 }
