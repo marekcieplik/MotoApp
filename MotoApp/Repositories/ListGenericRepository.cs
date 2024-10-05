@@ -2,9 +2,14 @@
 
 namespace MotoApp.Repositories;
 
-public class ListGenericRepository<T> where T : class, IEntity, new()
+public class ListGenericRepository<T> : IRepository<T> where T : class, IEntity, new()
 {
     protected readonly List<T> _items = new List<T>();
+
+    public IEnumerable<T> GetAll()
+    {
+        return _items.ToList();
+    }
 
     public T GetById(int id)
     {
@@ -24,7 +29,13 @@ public class ListGenericRepository<T> where T : class, IEntity, new()
 
     public void Save()
     {
-        foreach (var item in _items)
+       // save is not required with List
+    }
+
+    public void PrintListOnScrean()
+    {
+        Console.WriteLine($"class ListGenericRepository<T> : IRepository<T> where T : class, IEntity, new()");
+        foreach(var item in _items)
         {
             Console.WriteLine(item.ToString());
         }
