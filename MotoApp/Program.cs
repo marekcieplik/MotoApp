@@ -2,14 +2,25 @@
 using MotoApp.Entities;
 using MotoApp.Repositories;
 
-var employeesRepository = new ListGenericRepository<Employee>();
-employeesRepository.Add(new Employee() { FirstName = "Adam" });
-employeesRepository.PrintListOnScrean();
+var employeeRepository = new SqlRepository<Employee>(new MotoAppDbContext());
+employeeRepository.Add(new Employee() { FirstName = "Adam" });
+employeeRepository.Add(new Employee() { FirstName = "Piotr" });
+employeeRepository.Add(new Employee() { FirstName = "Zuzanna" });
 
-var sqlRepository = new SqlRepository<Employee>(new MotoAppDbContext());
-sqlRepository.Add(new Employee() { FirstName = "Adam" });
-sqlRepository.Add(new Employee() { FirstName = "Piotr" });
-//sqlRepository.Save();
+GetEmployeeById(employeeRepository);
 
-var emp = sqlRepository.GetById(2);
-Console.WriteLine(emp.ToString());
+
+static void GetEmployeeById(IRepository<Employee> employeeRepository)
+{
+    var employee = employeeRepository.GetById(2);
+    Console.WriteLine(employee.ToString());
+}
+
+//GetEmployeeByIdIEntity(employeeRepository);
+
+
+static void GetEmployeeByIdIEntity(IRepository<IEntity> employeeRepository)
+{
+    var employee = employeeRepository.GetById(2);
+    Console.WriteLine(employee.ToString());
+}
