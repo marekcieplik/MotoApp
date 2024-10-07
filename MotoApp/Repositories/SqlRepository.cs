@@ -17,11 +17,11 @@ public class SqlRepository<T> : IRepository<T> where T: class, IEntity, new()
 
     public IEnumerable<T> GetAll()
     {
-        return _dbSet.ToList(); //return _dbSet.OrderBy(item => item.Id).ToList();
+        return _dbSet.ToList();
 
     }
 
-    public T? GetById(int id)
+    public T GetById(int id)
     {
         return _dbSet.Find(id);
     }
