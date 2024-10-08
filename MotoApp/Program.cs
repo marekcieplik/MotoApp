@@ -1,5 +1,6 @@
 ﻿using MotoApp.Data;
 using MotoApp.Entities;
+using MotoApp.Entities.Extensions;
 using MotoApp.Repositories;
 using MotoApp.Repositories.Extensions;
 
@@ -17,6 +18,9 @@ static void AddEmployees(IRepository<Employee> employeeRepository)
     };
 
     employeeRepository.AddBatch(employees);
+    Employee? test = EntityExtensions.Copy(new Employee { FirstName = "Adam" });
+    employeeRepository.Add(test);
+    employeeRepository.Save();
 }
 
 static void WriteAllToConsole(IReadRepository<IEntity> repository)
