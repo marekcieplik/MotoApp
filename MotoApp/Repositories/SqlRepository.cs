@@ -21,7 +21,7 @@ public class SqlRepository<T> : IRepository<T> where T: class, IEntity, new()
 
     }
 
-    public T GetById(int id)
+    public T? GetById(int id)
     {
         return _dbSet.Find(id);
     }
